@@ -3,13 +3,12 @@ import java.util.Scanner;
 import java.util.Set;
 
 public class SelectThreeDigitNumber {
-    int attempts = 0;
 
     public void selectThreeDigitNumber(int[] computerNumbers){
-        Scanner scanner = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         while (true) {
             System.out.print("세 자리 숫자를 입력하세요: ");
-            String input = scanner.nextLine();
+            String input = sc.nextLine();
 
             // 입력 값 유효성 검사
             if (input.length() != 3 || !isValidInput(input)) {
@@ -19,10 +18,9 @@ public class SelectThreeDigitNumber {
 
             int[] playerNumbers = convertStringToIntArray(input);
 
-            // 스트라이크, 볼, 아웃, 시도횟수 계산
+            // 스트라이크, 볼, 아웃 계산
             int strike = calculateStrike(computerNumbers, playerNumbers);
             int ball = calculateBall(computerNumbers, playerNumbers);
-            attempts++;
 
             if(strike != 0 || ball != 0) {
                 System.out.println("스트라이크: " + strike + ", 볼: " + ball);
@@ -32,7 +30,6 @@ public class SelectThreeDigitNumber {
 
             if (strike == 3) {
                 System.out.println("축하합니다! 정답입니다.");
-                System.out.println(attempts + "회 시도하였습니다.");
                 break;
             }
         }
